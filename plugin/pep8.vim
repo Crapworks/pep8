@@ -11,7 +11,10 @@ function! <SID>Pep8()
   set grepformat&vim
   set grepformat&vim
   let &grepformat = '%f:%l:%m'
-  let &grepprg = 'pep8 --repeat'
+  " ignore errors for lines longer than 79 characters
+  " in the era of wide screen monitors this doesn't make
+  " sense to me anymore
+  let &grepprg = 'pep8 --repeat --ignore E501'
   if &readonly == 0 | update | endif
   silent! grep! %
   let &grepformat = l:grepformat_save
